@@ -1,0 +1,12 @@
+<view class="page">
+    <form class="page__bd" catchsubmit="formSubmit" catchreset="formReset">
+        <view class="section">
+            <input name="input" placeholder="请输入命令，例如：ls" />
+        </view>
+        <view class="btn-area">
+            <button formType="submit">Submit</button>
+            <button formType="reset">Reset</button>
+            <text>{{content}}</text>
+        </view>
+    </form>
+</view>
