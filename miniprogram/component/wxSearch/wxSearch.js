@@ -3,10 +3,10 @@ import { getStorage, setStorage, setData } from '../../utils/util';
 const app = getApp()
 
 // component/wxSearch.js
-module.exports={
+module.exports = {
   init(that) {
-    this._setData(that,{
-      'searchList':getStorage('searchList') || []
+    this._setData(that, {
+      'searchList': getStorage('searchList') || []
     });
 
     let windowHeight = wx.getSystemInfoSync().windowHeight // 屏幕的高度
@@ -19,20 +19,24 @@ module.exports={
     console.log('windowWidth: ', windowWidth);
     console.log('windowHeight: ', windowHeight);
   },
-  bindShowLog(e,that) {
+
+  bindShowLog(e, that) {
     this.showlog(that)
   },
+
   bindHideLog(e, that) {
     this._setData(that, {
       'searchIsHidden': true
     })
   },
+
   bindInputSchool(e, that) {
     var val = e.detail.value;
-    this.matchStroage(that,val)
+    this.matchStroage(that, val)
   },
-  bindSearchAllShow(e,that){
-    this._setData(that,{
+
+  bindSearchAllShow(e, that) {
+    this._setData(that, {
       searchAllShow: true
     })
   },
@@ -41,7 +45,7 @@ module.exports={
     if (e == '') {
       return;
     }
- 
+
     this._setData(that, {
       loadingIsHidden: false
     })
@@ -98,21 +102,23 @@ module.exports={
     let allSearchList = getStorage('searchList') || [];
     let index = allSearchList.indexOf(val);
     allSearchList.splice(index, 1)
-    this.updataLog(that,allSearchList)
+    this.updataLog(that, allSearchList)
   },
+
   bindSearchHidden(that) {
-    this._setData(that,{
+    this._setData(that, {
       searchIsHidden: true
     })
   },
-  showlog(that){
+
+  showlog(that) {
     let allSearchList = getStorage('searchList') || [];
     let searchList = []
     if (typeof (allSearchList) != undefined && allSearchList.length > 0) {
       for (var i = 0, len = allSearchList.length; i < len; i++) {
-          searchList.push(allSearchList[i])
+        searchList.push(allSearchList[i])
       }
-    }else {
+    } else {
       searchList = allSearchList
     }
     this._setData(that, {
@@ -122,6 +128,7 @@ module.exports={
       searchList
     })
   },
+
   matchStroage(that, val) {
     let allSearchList = getStorage('searchList') || [];
     let searchList = []
@@ -139,18 +146,20 @@ module.exports={
       searchList
     })
   },
-  _setData(that, param){
+
+  _setData(that, param) {
     let tabData = that.data.tabData;
-    for (var key in param){
+    for (var key in param) {
       tabData[key] = param[key];
     }
     that.setData({
       tabData
     })
   },
-  updataLog(that, list){
+
+  updataLog(that, list) {
     setStorage('searchList', list)
-    this._setData(that,{
+    this._setData(that, {
       searchList: list
     })
   }
