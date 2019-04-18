@@ -36,12 +36,12 @@ module.exports={
       searchAllShow: true
     })
   },
-  
-  bindGoSearch(e, that){
+
+  bindGoSearch(e, that) {
     if (e == '') {
       return;
     }
-    let startTime = Date.now()
+ 
     this._setData(that, {
       loadingIsHidden: false
     })
@@ -57,37 +57,39 @@ module.exports={
       inputVal: ''
     })
 
-    var markText = ''
+
     var tldrCmdDir = 'https://raw.github.com/tldr-pages/tldr/master/pages/common/'
     var tldrCmdPage = tldrCmdDir.concat(e).concat('.md');
+    var linuxCmdDir = 'https://raw.github.com/tldr-pages/tldr/master/pages/linux/'
+    var linuxCmdPage = linuxCmdDir.concat(e).concat('.md');
+    console.log('tldrCmdPage: ', linuxCmdPage)
     console.log('tldrCmdPage: ', tldrCmdPage)
-    wx.vrequest({
-      url: tldrCmdPage,
-      success: ret => {
-        console.log('success: ', ret.data);
-        if (ret.statusCode == 404) {
-          markText = 'Not Found: \`'.concat(e).concat('\`');
-        } else {
-          markText = ret.data
+
+    let req1 = wx.vrequest({ url: linuxCmdPage, data: {}, })
+    let req2 = wx.vrequest({ url: tldrCmdPage, data: {}, })
+
+    var markText = ''
+
+    Promise.all([req1, req2]).then(function (data) {
+      console.log(data)
+      var loop = 0
+      var len = data.length;
+      for (loop = 0; loop < len; loop++) {
+        if (data[loop].statusCode != 404 && data[loop].errMsg != 'request:fail') {
+          break
         }
-        this._setData(that, {
-          mdText: markText,
-          searchIsHidden: true,
-          searchResultIsHidden: false,
-          loadingIsHidden: true
-        })
-      },
-      fail: function (ret) {
-        console.log('fail: ', ret.data);
-        this._setData(that, {
-          mdText: ret.data,
-          searchIsHidden: true,
-          searchResultIsHidden: false,
-          loadingIsHidden: true
-        })
-      },
-      complete: function (ret) {
       }
+      if (loop < len) {
+        markText = data[loop].data;
+      } else {
+        markText = 'Not Found: \`'.concat(e).concat('\`');
+      }
+      that.setData({
+        'tabData.mdText': markText,
+        'tabData.searchIsHidden': true,
+        'tabData.searchResultIsHidden': false,
+        'tabData.loadingIsHidden': true
+      })
     })
   },
 
