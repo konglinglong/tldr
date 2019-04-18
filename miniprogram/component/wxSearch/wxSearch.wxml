@@ -1,9 +1,8 @@
 <template name="wxSearch">
   <view class="head_search">
-    <input class="text_search colorGray" type='text' confirm-type="search" placeholder="请输入命令，如：ls" placeholder-class="colorGray" bindconfirm="bindGoSearch" bindfocus="bindShowLog" bindinput="bindInputSchool" value="{{inputVal}}"></input>
-    <icon class="icon_search" type='search' size="18" bindtap="bindGoSearch"></icon>
+    <input class="text_search colorGray" type='text' confirm-type="search" placeholder="请输入命令，如：ls" placeholder-class="colorGray" bindconfirm="bindGoSearch" bindfocus="bindShowLog" bindinput="inputCode" value="{{inputVal}}"></input>
+    <icon class="icon_search" type='search' size="14"></icon>
   </view>
-
   <view class="result_search" hidden="{{searchIsHidden}}" bindtap='bindSearchHidden'>
     <view class='list_search'>
       <view class='li_list_search' wx:for="{{searchList}}" wx:key="{{index}}" wx:if="{{index<3 || searchAllShow}}" catchtap="bindGoHistorySearch" data-item="{{item}}">

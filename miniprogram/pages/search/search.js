@@ -32,8 +32,15 @@ Page({
   bindInputSchool: function (e) {
     wxSearch.bindInputSchool(e, this)
   },
+
+  inputCode: function (e) {
+    console.log('e: ', e);
+    return e.detail.value.replace(/[^a-zA-Z]/g, '')
+  },
+
   bindGoSearch: function (e) {
-    let val = this.data.tabData.inputVal;
+    console.log('e1: ', e)
+    let val = e.detail.value;
     wxSearch.bindGoSearch(val, this)
   },
   bindGoHotSearch: function (e) {
