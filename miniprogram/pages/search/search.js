@@ -9,13 +9,17 @@ Page({
   data: {
     tabData: {
       searchList: getStorage('searchList'),
-      hotsSearch: ['ls', 'cd', 'pwd', 'mkdir', 'rm', 'rmdir', 'mv', 'cp', 'cat'], activeIndex: 0,
+      hotsSearch: ['ls', 'cd', 'rm', 'mv', 'cp', 'cat', 'pwd', 'mkdir', 'rmdir'], activeIndex: 0,
       sliderOffset: 0,
       sliderLeft: 0,
+      searchResultIsHidden: true,
       searchIsHidden: true,
       searchAllShow: false,
+      loadingIsHidden: true,
       inputVal: '',
-      mdText: 'sdfdsfdsfdsafsdfsdfsadfsdfdsfsdfsdfsdfsdfsdfdsfdsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss'
+      mdText: '',
+      windowHeight: 0,
+      scrollHeight: 400
     }
   },
   onLoad: function (options) {
@@ -40,9 +44,9 @@ Page({
   bindClearSearch: function () {
     wxSearch.updataLog(this,[])
   },
-  bindGoSchool(e) {
+  bindGoHistorySearch(e) {
     let val = e.currentTarget.dataset.item;
-    wxSearch.goSchool(val)
+    wxSearch.bindGoSearch(val, this)
   },
   bindDelLog(e) {
     wxSearch.bindDelLog(e, this)

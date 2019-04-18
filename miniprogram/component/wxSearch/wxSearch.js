@@ -7,7 +7,17 @@ module.exports={
   init(that) {
     this._setData(that,{
       'searchList':getStorage('searchList') || []
+    });
+
+    let windowHeight = wx.getSystemInfoSync().windowHeight // 屏幕的高度
+    let windowWidth = wx.getSystemInfoSync().windowWidth  // 屏幕的宽度
+    this._setData(that, {
+      windowHeight: windowHeight,
+      scrollHeight: windowHeight - 67
     })
+
+    console.log('windowWidth: ', windowWidth);
+    console.log('windowHeight: ', windowHeight);
   },
   bindShowLog(e,that) {
     this.showlog(that)
@@ -26,11 +36,23 @@ module.exports={
       searchAllShow: true
     })
   },
-  bindGoSearch(e,that){
-    let searchList_stroage = getStorage('searchList') || [];
-    searchList_stroage.push(e)
+  
+  bindGoSearch(e, that){
+    if (e == '') {
+      return;
+    }
+    let startTime = Date.now()
+    this._setData(that, {
+      loadingIsHidden: false
+    })
 
-    setStorage('searchList', searchList_stroage)
+    let allSearchList = getStorage('searchList') || [];
+    if (allSearchList.length > 7) {
+      allSearchList.splice(6, allSearchList.length - 7)
+    }
+    allSearchList.splice(0, 0, e)
+    setStorage('searchList', allSearchList)
+
     this._setData(that, {
       inputVal: ''
     })
@@ -49,23 +71,32 @@ module.exports={
           markText = ret.data
         }
         this._setData(that, {
-          mdText: markText
+          mdText: markText,
+          searchIsHidden: true,
+          searchResultIsHidden: false,
+          loadingIsHidden: true
         })
       },
       fail: function (ret) {
         console.log('fail: ', ret.data);
         this._setData(that, {
-          mdText: ret.data
+          mdText: ret.data,
+          searchIsHidden: true,
+          searchResultIsHidden: false,
+          loadingIsHidden: true
         })
+      },
+      complete: function (ret) {
       }
     })
   },
+
   bindDelLog(e, that) {
     let val = e.currentTarget.dataset.item;
-    let searchList_stroage = getStorage('searchList') || [];
-    let index = searchList_stroage.indexOf(val);
-    searchList_stroage.splice(index, 1)
-    this.updataLog(that,searchList_stroage)
+    let allSearchList = getStorage('searchList') || [];
+    let index = allSearchList.indexOf(val);
+    allSearchList.splice(index, 1)
+    this.updataLog(that,allSearchList)
   },
   bindSearchHidden(that) {
     this._setData(that,{
@@ -73,32 +104,33 @@ module.exports={
     })
   },
   showlog(that){
-    let searchList_stroage = getStorage('searchList') || [];
+    let allSearchList = getStorage('searchList') || [];
     let searchList = []
-    if (typeof (searchList_stroage) != undefined && searchList_stroage.length > 0) {
-      for (var i = 0, len = searchList_stroage.length; i < len; i++) {
-          searchList.push(searchList_stroage[i])
+    if (typeof (allSearchList) != undefined && allSearchList.length > 0) {
+      for (var i = 0, len = allSearchList.length; i < len; i++) {
+          searchList.push(allSearchList[i])
       }
     }else {
-      searchList = searchList_stroage
+      searchList = allSearchList
     }
     this._setData(that, {
       searchIsHidden: false,
-      searchAllShow:false,
+      searchAllShow: false,
+      searchResultIsHidden: true,
       searchList
     })
   },
-  matchStroage(that,val) {
-    let searchList_stroage = getStorage('searchList') || [];
+  matchStroage(that, val) {
+    let allSearchList = getStorage('searchList') || [];
     let searchList = []
-    if (typeof (val) != undefined && val.length > 0 && typeof (searchList_stroage) != undefined && searchList_stroage.length > 0) {
-      for (var i = 0, len = searchList_stroage.length; i < len; i++) {
-        if (searchList_stroage[i].indexOf(val) != -1) {
-          searchList.push(searchList_stroage[i])
+    if (typeof (val) != undefined && val.length > 0 && typeof (allSearchList) != undefined && allSearchList.length > 0) {
+      for (var i = 0, len = allSearchList.length; i < len; i++) {
+        if (allSearchList[i].indexOf(val) != -1) {
+          searchList.push(allSearchList[i])
         }
       }
     } else {
-      searchList = searchList_stroage
+      searchList = allSearchList
     }
     this._setData(that, {
       inputVal: val,
@@ -119,15 +151,5 @@ module.exports={
     this._setData(that,{
       searchList: list
     })
-  },
-  goSchool(val) {
-    wx.showModal({
-      title: '调往搜索页面',
-      content: `你的传值是${val}，带上它去新页面`,
-    })
-    console.log(val)
-    // wx.redirectTo({
-    //   url: `/pages/schools/schools?item=${val}`
-    // })
   }
 }
