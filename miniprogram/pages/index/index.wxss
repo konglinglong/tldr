@@ -1,3 +1,5 @@
+/* pages/index/index.wxss */
+
 .head_search{
   position:relative;
   padding:20rpx;
