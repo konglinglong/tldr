@@ -20,12 +20,12 @@ Page({
   },
 
   onLoad: function (options) {
-    var that = this;
+    var that = this
 
     //初始渲染-读取storage的历史记录
     that.setData({
-      'searchList': getStorage('searchList') || []
-    });
+      'searchList': getStorage('searchList')
+    })
 
     let windowHeight = wx.getSystemInfoSync().windowHeight // 屏幕的高度
     let windowWidth = wx.getSystemInfoSync().windowWidth  // 屏幕的宽度
@@ -34,12 +34,12 @@ Page({
       scrollHeight: windowHeight - 67
     })
 
-    console.log('windowWidth: ', windowWidth);
-    console.log('windowHeight: ', windowHeight);
+    console.log('windowWidth: ', windowWidth)
+    console.log('windowHeight: ', windowHeight)
   },
 
   bindSearchAllShow: function (e) {
-    var that = this;
+    var that = this
 
     that.setData({
       'searchAllShow': true
@@ -47,7 +47,7 @@ Page({
   },
 
   bindInput: function (e) {
-    console.log('e: ', e);
+    console.log('e: ', e)
     return e.detail.value.replace(/[^a-zA-Z]/g, '')
   },
 
@@ -61,30 +61,27 @@ Page({
   },
 
   searchCmd: function (e) {
-    var that = this;
+    var that = this
 
     console.log('command: ', e)
     if (e == '') {
-      return;
+      return
     }
 
     that.setData({
-      'loadingIsHidden': false
+      'loadingIsHidden': false,
+      'inputVal': ''
     })
 
-    let allSearchList = getStorage('searchList') || [];
+    let allSearchList = getStorage('searchList')
     allSearchList.splice(0, 0, e)
     if (allSearchList.length > 8) {
       allSearchList.splice(8, allSearchList.length - 8)
     }
     setStorage('searchList', allSearchList)
 
-    that.setData({
-      'inputVal': ''
-    })
-
-    var commonCmdPage = commonCmdDir.concat(e).concat('.md');
-    var linuxCmdPage = linuxCmdDir.concat(e).concat('.md');
+    var commonCmdPage = commonCmdDir.concat(e).concat('.md')
+    var linuxCmdPage = linuxCmdDir.concat(e).concat('.md')
     console.log('commonCmdPage: ', commonCmdPage)
     console.log('linuxCmdPage: ', linuxCmdPage)
 
@@ -109,27 +106,27 @@ Page({
   },
 
   bindGoSearch: function (e) {
-    var that = this;
+    var that = this
 
-    let val = e.detail.value;
+    let val = e.detail.value
     if (val == '') {
-      return;
+      return
     }
     that.searchCmd(val)
   },
 
   bindGoHotSearch: function (e) {
-    var that = this;
-    console.log('e: ', e);
-    let val = e.currentTarget.dataset.item;
+    var that = this
+    console.log('e: ', e)
+    let val = e.currentTarget.dataset.item
     if (val == '') {
-      return;
+      return
     }
     that.searchCmd(val)
   },
 
   bindClearSearch: function () {
-    var that = this;
+    var that = this
 
     setStorage('searchList', [])
     that.setData({
@@ -138,20 +135,20 @@ Page({
   },
 
   bindGoHistorySearch(e) {
-    var that = this;
+    var that = this
 
-    console.log('e: ', e);
-    let val = e.currentTarget.dataset.item;
+    console.log('e: ', e)
+    let val = e.currentTarget.dataset.item
     if (val == '') {
-      return;
+      return
     }
     that.searchCmd(val)
   },
 
   showHistory(e) {
-    var that = this;
+    var that = this
 
-    let allSearchList = getStorage('searchList') || [];
+    let allSearchList = getStorage('searchList')
     let searchList = []
     if (typeof (allSearchList) != undefined && allSearchList.length > 0) {
       for (var i = 0, len = allSearchList.length; i < len; i++) {
@@ -170,13 +167,13 @@ Page({
   },
 
   bindShowHistory(e) {
-    var that = this;
+    var that = this
 
     that.showHistory(e)
   },
 
   bindSearchHidden() {
-    var that = this;
+    var that = this
 
     that.setData({
       'searchIsHidden': true

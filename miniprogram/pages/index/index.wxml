@@ -23,7 +23,7 @@
   </view>
 </view>
 <scroll-view scroll-y="true" style="height:{{scrollHeight}}px; white-space: normal; word-wrap: break-word;" hidden="{{searchResultIsHidden}}">
-  <view class="container">
+  <view class="wemark_text">
     <wemark md="{{mdText}}" link highlight type="wemark"></wemark>
   </view>
 </scroll-view>
