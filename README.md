@@ -15,8 +15,9 @@
   <img src='https://github.com/konglinglong/tldr/blob/master/image/1148248786.jpg' width='344' alt='preview' />
 </div>
 
-
-![太长不读小程序](https://github.com/konglinglong/tldr/blob/master/image/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg)
+<div align=center>
+  <img src='https://github.com/konglinglong/tldr/blob/master/image/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg' alt='preview' />
+</div>
 
 ## 使用
 
