@@ -7,7 +7,8 @@
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"autoAudits": false
+		"autoAudits": false,
+		"nodeModules": true
 	},
 	"appid": "wx3c494d95cd59596d",
 	"projectname": "tldr",

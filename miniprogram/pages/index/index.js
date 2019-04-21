@@ -1,12 +1,17 @@
-import { getStorage, setStorage } from '../../utils/util';
+import {
+  getStorage,
+  setStorage
+} from '../../utils/util';
 
 const commonCmdDir = 'https://raw.github.com/tldr-pages/tldr/master/pages/common/'
 const linuxCmdDir = 'https://raw.github.com/tldr-pages/tldr/master/pages/linux/'
+const cloudTldrDir = 'cloud://kong-239266.6b6f-kong-239266/tldr/'
 
 Page({
   data: {
     searchList: getStorage('searchList'),
-    hotsSearch: ['ls', 'cd', 'rm', 'mv', 'cp', 'cat', 'pwd', 'mkdir', 'rmdir'], activeIndex: 0,
+    hotsSearch: ['ls', 'cd', 'rm', 'mv', 'cp', 'cat', 'pwd', 'mkdir', 'rmdir'],
+    activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0,
     searchResultIsHidden: true,
@@ -27,15 +32,11 @@ Page({
       'searchList': getStorage('searchList')
     })
 
-    let windowHeight = wx.getSystemInfoSync().windowHeight // 屏幕的高度
-    let windowWidth = wx.getSystemInfoSync().windowWidth  // 屏幕的宽度
+    const res = wx.getSystemInfoSync()
     that.setData({
-      windowHeight: windowHeight,
-      scrollHeight: windowHeight - 67
+      windowHeight: res.windowHeight,
+      scrollHeight: res.windowHeight - 67
     })
-
-    console.log('windowWidth: ', windowWidth)
-    console.log('windowHeight: ', windowHeight)
   },
 
   bindSearchAllShow: function (e) {
@@ -80,27 +81,46 @@ Page({
     }
     setStorage('searchList', allSearchList)
 
-    var commonCmdPage = commonCmdDir.concat(e).concat('.md')
-    var linuxCmdPage = linuxCmdDir.concat(e).concat('.md')
-    console.log('commonCmdPage: ', commonCmdPage)
-    console.log('linuxCmdPage: ', linuxCmdPage)
+    var commonFildID = cloudTldrDir.concat('pages/common/').concat(e).concat('.md')
+    var linuxFileID = cloudTldrDir.concat('pages/linux/').concat(e).concat('.md')
+    console.log('commonFildID: ', commonFildID)
+    console.log('linuxFileID: ', linuxFileID)
 
-    let req1 = wx.vrequest({ url: commonCmdPage, })
-    let req2 = wx.vrequest({ url: linuxCmdPage, })
-
-    req1.then(function (data1) {
-      console.log(data1)
-      if (data1.statusCode != 404 && data1.errMsg != 'request:fail') {
-        that.showSearchResult(data1.data, that)
-      } else {
-        req2.then(function (data2) {
-          console.log(data2)
-          if (data2.statusCode != 404 && data2.errMsg != 'request:fail') {
-            that.showSearchResult(data2.data, that)
-          } else {
-            that.showSearchResult('Not Found: \`'.concat(e).concat('\`'), that)
+    wx.cloud.getTempFileURL({
+      fileList: [{
+        fileID: commonFildID,
+        maxAge: 60 * 60,
+      },
+      {
+        fileID: linuxFileID,
+        maxAge: 60 * 60,
+      }],
+      success: function (res1) {
+        console.log(res1)
+        var loop = 0
+        var len = res1.fileList.length
+        for (loop = 0; loop < len; loop++) {
+          if (res1.fileList[loop].errMsg == 'ok') {
+            wx.request({
+              url: res1.fileList[loop].tempFileURL,
+              method: 'GET',
+              success: function (res2) {
+                that.showSearchResult(res2.data, that)
+              },
+              fail: function (res2) {
+                that.showSearchResult('Not Found: \`'.concat(e).concat('\`'), that)
+              }
+            })
+            break
           }
-        })
+        }
+        if (loop == len) {
+          that.showSearchResult('Not Found: \`'.concat(e).concat('\`'), that)
+        }
+      },
+      fail: function (res1) {
+        console.log('res1: ', res1)
+        that.showSearchResult('Not Found: \`'.concat(e).concat('\`'), that)
       }
     })
   },
