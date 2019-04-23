@@ -94,4 +94,8 @@
 
 .wemark_text {
   padding: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
 }

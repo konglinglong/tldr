@@ -88,19 +88,17 @@ Page({
 
     wx.cloud.getTempFileURL({
       fileList: [{
-        fileID: commonFildID,
-        maxAge: 60 * 60,
+        fileID: commonFildID
       },
       {
-        fileID: linuxFileID,
-        maxAge: 60 * 60,
+        fileID: linuxFileID
       }],
       success: function (res1) {
         console.log(res1)
         var loop = 0
         var len = res1.fileList.length
         for (loop = 0; loop < len; loop++) {
-          if (res1.fileList[loop].errMsg == 'ok') {
+          if (res1.fileList[loop].status == 0 && res1.fileList[loop].tempFileURL != '') {
             wx.request({
               url: res1.fileList[loop].tempFileURL,
               method: 'GET',
