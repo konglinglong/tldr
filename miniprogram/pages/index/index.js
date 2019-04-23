@@ -81,44 +81,27 @@ Page({
     }
     setStorage('searchList', allSearchList)
 
-    var commonFildID = cloudTldrDir.concat('pages/common/').concat(e).concat('.md')
-    var linuxFileID = cloudTldrDir.concat('pages/linux/').concat(e).concat('.md')
-    console.log('commonFildID: ', commonFildID)
-    console.log('linuxFileID: ', linuxFileID)
+    var commonCmdPage = commonCmdDir.concat(e).concat('.md')
+    var linuxCmdPage = linuxCmdDir.concat(e).concat('.md')
+    console.log('commonCmdPage: ', commonCmdPage)
+    console.log('linuxCmdPage: ', linuxCmdPage)
 
-    wx.cloud.getTempFileURL({
-      fileList: [{
-        fileID: commonFildID
-      },
-      {
-        fileID: linuxFileID
-      }],
-      success: function (res1) {
-        console.log(res1)
-        var loop = 0
-        var len = res1.fileList.length
-        for (loop = 0; loop < len; loop++) {
-          if (res1.fileList[loop].status == 0 && res1.fileList[loop].tempFileURL != '') {
-            wx.request({
-              url: res1.fileList[loop].tempFileURL,
-              method: 'GET',
-              success: function (res2) {
-                that.showSearchResult(res2.data, that)
-              },
-              fail: function (res2) {
-                that.showSearchResult('Not Found: \`'.concat(e).concat('\`'), that)
-              }
-            })
-            break
+    let req1 = wx.vrequest({ url: commonCmdPage, })
+    let req2 = wx.vrequest({ url: linuxCmdPage, })
+
+    req1.then(function (data1) {
+      console.log(data1)
+      if (data1.statusCode != 404 && data1.errMsg != 'request:fail') {
+        that.showSearchResult(data1.data, that)
+      } else {
+        req2.then(function (data2) {
+          console.log(data2)
+          if (data2.statusCode != 404 && data2.errMsg != 'request:fail') {
+            that.showSearchResult(data2.data, that)
+          } else {
+            that.showSearchResult('Not Found: \`'.concat(e).concat('\`'), that)
           }
-        }
-        if (loop == len) {
-          that.showSearchResult('Not Found: \`'.concat(e).concat('\`'), that)
-        }
-      },
-      fail: function (res1) {
-        console.log('res1: ', res1)
-        that.showSearchResult('Not Found: \`'.concat(e).concat('\`'), that)
+        })
       }
     })
   },
