@@ -8,8 +8,7 @@
 ## 预览
 
 <div align=center>
-  <img src='https://github.com/konglinglong/tldr/blob/master/image/1334169896.jpg' width='344' alt='preview' />
-  <img src='https://github.com/konglinglong/tldr/blob/master/image/1148248786.jpg' width='344' alt='preview' />
+  <img src='https://github.com/konglinglong/tldr/blob/master/image/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%95%8C%E9%9D%A2.png' alt='preview' />
 </div>
 
 <div align=center>
