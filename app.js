@@ -1,8 +1,8 @@
 //app.js
 
-var common0Cmds = require("./commands/common0.js")
-var common1Cmds = require("./commands/common1.js")
-var linux0Cmds = require("./commands/linux0.js")
+var commands0 = require("./commands/commands0.js")
+var commands1 = require("./commands/commands1.js")
+var commands2 = require("./commands/commands2.js")
 
 App({
   onLaunch: function() {
@@ -20,7 +20,7 @@ App({
       }
     })
 
-    this.globalData.allCommands = [common0Cmds.commands, common1Cmds.commands, linux0Cmds.commands]
+    this.globalData.allCommands = [commands0.commands, commands1.commands, commands2.commands]
 
     for (var loop = 0; loop < this.globalData.allCommands.length; loop++) {
       for (var k in this.globalData.allCommands[loop]) {
