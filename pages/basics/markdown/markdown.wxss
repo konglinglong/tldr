@@ -1,0 +1,9 @@
+/* pages/basics/markdown/markdown.wxss */
+
+.wemark_text {
+  padding: 0px 30rpx 0px 30rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}

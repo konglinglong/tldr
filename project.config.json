@@ -1,18 +1,25 @@
 {
-	"miniprogramRoot": "miniprogram/",
-	"cloudfunctionRoot": "cloudfunctions/",
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
 	"setting": {
 		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
-		"newFeature": true,
-		"autoAudits": false,
-		"nodeModules": true
+		"newFeature": true
 	},
+	"compileType": "miniprogram",
+	"libVersion": "2.6.4",
 	"appid": "wx3c494d95cd59596d",
 	"projectname": "tldr",
-	"libVersion": "2.2.5",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -27,15 +34,17 @@
 			"list": []
 		},
 		"game": {
+			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
 			"current": 0,
 			"list": [
 				{
-					"id": -1,
-					"name": "db guide",
-					"pathName": "pages/databaseGuide/databaseGuide"
+					"id": 0,
+					"name": "-----首页-----",
+					"pathName": "pages/basics/home/home",
+					"query": ""
 				}
 			]
 		}

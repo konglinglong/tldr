@@ -1,0 +1,28 @@
+
+<view class="cu-bar bg-white search fixed" style="top:0px;">
+  <view class="search-form round">
+    <text class="cuIcon-search"></text>
+    <input type="text" placeholder="请输入命令，如cd" confirm-type="search" bindinput="onKeyInput" bindconfirm="onSearch" bindfocus="onFocus" value="{{inputValue}}">></input>
+  </view>
+  <view class="action">
+    <button class="cu-btn bg-gradual-green shadow-blur round" bindtap="onSearch">搜索</button>
+  </view>
+</view>
+
+<scroll-view scroll-y class="scrollPage" hidden="{{!mdTextHidden}}">
+  <view class='nav-list'>
+    <navigator open-type="navigate" hover-class='none' url="/pages/basics/indexes/indexes?from={{item.name}}" class="nav-li bg-{{item.color}}" wx:for="{{elements}}" wx:key>
+      <view class="nav-title">{{item.title}}</view>
+      <view class="nav-name">{{item.name}}</view>
+      <text class='cuIcon-{{item.icon}}'></text>
+    </navigator>
+  </view>
+</scroll-view>
+
+<scroll-view scroll-y="true" style="top:48px; height:calc(100vh - 48px); white-space: normal; word-wrap: break-word;" hidden="{{mdTextHidden}}">
+  <view class="wemark_text">
+    <wemark md="{{mdText}}" link highlight type="wemark"></wemark>
+  </view>
+</scroll-view>
+
+<view class='cu-tabbar-height'></view>

@@ -1,0 +1,7 @@
+<!--pages/basics/markdown/markdown.wxml-->
+
+<scroll-view scroll-y="true" style="height:100vh; white-space: normal; word-wrap: break-word;">
+  <view class="wemark_text">
+    <wemark md="{{mdText}}" link highlight type="wemark"></wemark>
+  </view>
+</scroll-view>

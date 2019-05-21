@@ -1,0 +1,39 @@
+
+<view class="cu-timeline">
+  <view class="cu-item text-green">
+    <view class="bg-green content shadow">
+      <view class="cu-capsule radius">
+        <view class="cu-tag bg-white text-green">v3.0.0</view>
+        <view class="cu-tag line-white">2019/05/20</view>
+      </view>
+      <view class="margin-top-sm text-content">
+        <view>1.界面大修改，优化交互体验</view>
+        <view>2.markdown资源直接集成到小程序APP端，优化性能</view>
+      </view>
+    </view>
+  </view>
+  <view class="cu-item text-green">
+    <view class="bg-green content shadow">
+      <view class="cu-capsule radius">
+        <view class="cu-tag bg-white text-green">v2.0.0</view>
+        <view class="cu-tag line-white">2019/04/23</view>
+      </view>
+      <view class="margin-top-sm text-content">
+        <view>1.使用腾讯云存储，极大提升性能</view>
+        <view>2.优化界面显示，修复搜索按钮点击失效问题</view>
+      </view>
+    </view>
+  </view>
+  <view class="cu-item text-green">
+    <view class="bg-green content shadow">
+      <view class="cu-capsule radius">
+        <view class="cu-tag bg-white text-green">v1.0.0</view>
+        <view class="cu-tag line-white">2019/04/16</view>
+      </view>
+      <view class="margin-top-sm text-content">
+        <view>1.首次发布</view>
+        <view>2.完成了基本的命令搜索、结果显示功能</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,31 @@
+<scroll-view scroll-y class="indexes" scroll-into-view="indexes-{{listCurID}}" style="height:100vh" scroll-with-animation="true" enable-back-to-top="true"  hidden="{{!mdTextHidden}}">
+  <block wx:for="{{letterList}}" wx:key>
+    <view class="padding indexItem-{{letterList[index]}}" id="indexes-{{letterList[index]}}" data-index="{{letterList[index]}}">{{letterList[index]}}</view>
+    <view class="cu-list menu-avatar no-padding">
+      <view class="cu-item" wx:for="{{cmdList[index]}}" wx:key wx:for-index="sub" bindtap="onSearch" data-item="{{cmdList[index][sub]}}">
+        <view class="cu-avatar round lg">{{letterList[index]}}</view>
+        <view class="content">
+          <view class="text-grey">
+            <text class="text-abc">{{cmdList[index][sub]}}</text></view>
+          <view class="text-gray text-sm" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+            {{cmdObject[cmdList[index][sub]].Brief}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+</scroll-view>
+<view class="indexBar" style="height:100vh"  hidden="{{!mdTextHidden}}">
+  <view class="indexBar-box" bindtouchstart="tStart" bindtouchend="tEnd" catchtouchmove="tMove">
+    <view class="indexBar-item" wx:for="{{letterList}}" wx:key id="{{index}}" bindtouchstart="getCur" bindtouchend="setCur">{{letterList[index]}}</view>
+  </view>
+</view>
+<!--选择显示-->
+<view hidden="{{hidden}}" class="indexToast">
+  {{listCur}}
+</view>
+<scroll-view scroll-y="true" style="height:100vh; white-space: normal; word-wrap: break-word;" hidden="{{mdTextHidden}}">
+  <view class="wemark_text">
+    <wemark md="{{mdText}}" link highlight type="wemark"></wemark>
+  </view>
+</scroll-view>
