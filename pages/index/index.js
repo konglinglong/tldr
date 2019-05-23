@@ -4,7 +4,7 @@ Page({
     PageCur: 'basics'
   },
   NavChange(e) {
-    console.log('e: ', e)
+    // console.log('e: ', e)
     this.setData({
       PageCur: e.currentTarget.dataset.cur
     })
