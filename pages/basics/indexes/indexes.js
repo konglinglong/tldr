@@ -17,7 +17,7 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
-    console.log(options)
+    // console.log(options)
 
     let cmdClass = options.from;
     if (app.globalData.cmdClass[cmdClass] != undefined) {
@@ -28,13 +28,12 @@ Page({
         cmdObject: app.globalData.cmdClass[cmdClass].cmdObject
       })
     }
-    console.log(this.data.cmdList)
-    console.log(this.data.cmdObject)
+    // console.log(this.data.cmdList)
+    // console.log(this.data.cmdObject)
   },
 
   onReady() {
     let that = this;
-    console.log("onReady")
     wx.createSelectorQuery().select('.indexBar-box').boundingClientRect(function(res) {
       that.setData({
         boxTop: res.top
@@ -137,7 +136,7 @@ Page({
     }
 
     wx.navigateTo({
-      url: '/pages/basics/markdown/markdown?mdText=' + that.data.mdText
+      url: '/pages/basics/markdown/markdown?mdText=' + encodeURIComponent(that.data.mdText)
     })
 
     //console.log(that.data.inputValue)

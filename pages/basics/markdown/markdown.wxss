@@ -5,12 +5,3 @@
 
 /**主题配色（浅色样式）**/
 @import '/towxml/style/theme/light.wxss';
-
-
-.wemark_text {
-  padding: 0px 30rpx 0px 30rpx;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
-}

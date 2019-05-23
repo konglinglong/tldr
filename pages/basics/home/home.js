@@ -93,9 +93,6 @@ Component({
         }
       }
 
-
-      console.log(typeof that.data.mdText)
-
       //console.log(loop, app.globalData.allCommands.length)
 
       if (loop == app.globalData.allCommands.length) {

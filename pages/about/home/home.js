@@ -82,7 +82,7 @@ Component({
       wx.cloud.getTempFileURL({
         fileList: ["cloud://kong-239266.6b6f-kong/zsmc.png"],
         success: function (res) {
-          console.log(res)
+          // console.log(res)
           if (res.fileList[0].status == 0 && res.fileList[0].tempFileURL != '') {
             wx.previewImage({
               urls: [res.fileList[0].tempFileURL],

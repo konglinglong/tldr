@@ -15,10 +15,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+    // console.log(options)
     let data = app.towxml.toJson(decodeURIComponent(options.mdText), 'markdown');
     data.theme = 'light';
-    console.log(data)
+    // console.log(data)
     this.setData({
       mdText: data,
     })

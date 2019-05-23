@@ -44,7 +44,7 @@ App({
         this.globalData.cmdClass[cmdClass].commands[letterIdx] = [k]
         this.globalData.cmdClass[cmdClass].cmdObject[k] = this.globalData.allCommands[loop][k]
       }
-      console.log(this.globalData.cmdClass)
+      // console.log(this.globalData.cmdClass)
     }
     
   },
