@@ -47,28 +47,38 @@ Component({
       }
       return e
     },
-    CopyLink(e) {
+
+    onUpdateRecordButton(e) {
+      wx.navigateTo({
+        url: '/pages/about/log/log'
+      })
+    },
+
+    onGitHubButton(e) {
       wx.setClipboardData({
         data: e.currentTarget.dataset.link,
         success: res => {
           wx.showToast({
             title: '已复制地址',
-            duration: 1500,
+            duration: 1200,
           })
         }
       })
     },
+
     showModal(e) {
       this.setData({
         modalName: e.currentTarget.dataset.target
       })
     },
+
     hideModal(e) {
       this.setData({
         modalName: null
       })
     },
-    showQrcode() {
+
+    onRewardQrcode() {
       wx.cloud.getTempFileURL({
         fileList: ["cloud://kong-239266.6b6f-kong/zsmc.png"],
         success: function (res) {
@@ -83,6 +93,12 @@ Component({
         fail: function (res) {
           console.log('res: ', res)
         }
+      })
+    },
+
+    onAboutButton(e) {
+      wx.navigateTo({
+        url: '/pages/about/about/about'
       })
     },
   }

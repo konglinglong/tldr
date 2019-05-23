@@ -93,6 +93,9 @@ Component({
         }
       }
 
+
+      console.log(typeof that.data.mdText)
+
       //console.log(loop, app.globalData.allCommands.length)
 
       if (loop == app.globalData.allCommands.length) {
@@ -103,7 +106,7 @@ Component({
       }
 
       wx.navigateTo({
-        url: '/pages/basics/markdown/markdown?mdText=' + that.data.mdText
+        url: '/pages/basics/markdown/markdown?mdText=' + encodeURIComponent(that.data.mdText)
       })
 
       //console.log(that.data.inputValue)

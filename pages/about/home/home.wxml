@@ -18,22 +18,22 @@
   </view>
   <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
     <view class="cu-item arrow">
-      <view class="content" bindtap="CopyLink" data-link="https://github.com/konglinglong/tldr">
+      <button class="cu-btn content" bindtap="onGitHubButton" data-link="https://github.com/konglinglong/tldr">
         <text class="cuIcon-github text-grey"></text>
         <text class="text-grey">GitHub</text>
-      </view>
+      </button>
     </view>
     <view class="cu-item arrow">
-      <navigator class="content" url="/pages/about/log/log" hover-class="none">
+      <button class="cu-btn content" bindtap="onUpdateRecordButton">
         <text class="cuIcon-formfill text-green"></text>
         <text class="text-grey">更新日志</text>
-      </navigator>
+      </button>
     </view>
     <view class="cu-item arrow">
-      <view class="content" bindtap="showQrcode">
+      <button class="cu-btn content" bindtap="onRewardQrcode">
         <text class="cuIcon-appreciatefill text-red"></text>
         <text class="text-grey">赞赏支持</text>
-      </view>
+      </button>
     </view>
     <view class="cu-item arrow">
       <button class="cu-btn content" open-type="feedback">
@@ -42,10 +42,10 @@
       </button>
     </view>
     <view class="cu-item arrow">
-      <navigator class="content" url="/pages/about/about/about" hover-class="none">
-        <image src="/images/logo.png" class="png" mode="aspectFit"></image>
+      <button class="cu-btn content" bindtap="onAboutButton">
+        <text class="cuIcon-emoji text-cyan"></text>
         <text class="text-grey">关于</text>
-      </navigator>
+      </button>
     </view>
   </view>
   <view class="cu-tabbar-height"></view>

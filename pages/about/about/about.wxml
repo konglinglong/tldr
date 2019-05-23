@@ -3,8 +3,8 @@
   <view class='text-center margin-bottom text-lg  text-grey'>关于</view>
   <view class='text-content'>
     <view>Hi！欢迎使用“太长不读”！</view>
-    <view class='margin-top-sm'>该项目是个人开发的一款微信小程序，如果你有一些好的想法或建议，可以在GitHub里提交给我。</view>
-    <view class='margin-top-sm'>项目是开源的，欢迎大家参与学习开发。如果这个项目有帮到你，或者你觉得还不错，可以扫描赞赏码支持一下！</view>
+    <view class='margin-top-sm'>该项目是个人开发的一款微信小程序，并在GitHub上开源。欢迎大家参与学习开发。如果你有一些好的想法或建议，可以在GitHub上提交给我。</view>
+    <view class='margin-top-sm'>如果这个项目有帮到你，或者你觉得还不错，可以扫描赞赏码支持一下！</view>
     <view class='margin-top-sm'>感谢以下项目提供的支持：tldr、ColorUI、v-request</view>
     <view class='margin-top-sm' style="text-align:right;">By: 孔令龙</view>
   </view>

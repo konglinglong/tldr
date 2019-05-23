@@ -4,6 +4,8 @@ var commands0 = require("./commands/commands0.js")
 var commands1 = require("./commands/commands1.js")
 var commands2 = require("./commands/commands2.js")
 
+const Towxml = require('/towxml/main');     //引入towxml库
+
 App({
   onLaunch: function() {
     if (wx.cloud) {
@@ -20,6 +22,7 @@ App({
       }
     })
 
+    this.globalData.mdText = ''
     this.globalData.allCommands = [commands0.commands, commands1.commands, commands2.commands]
 
     for (var loop = 0; loop < this.globalData.allCommands.length; loop++) {
@@ -45,6 +48,9 @@ App({
     }
     
   },
+
+  towxml: new Towxml(),
+
   globalData: {
     cmdClass: {
       "file man": {

@@ -1,4 +1,7 @@
 // pages/basics/markdown/markdown.js
+
+const app = getApp();
+
 Page({
 
   /**
@@ -13,8 +16,11 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
+    let data = app.towxml.toJson(decodeURIComponent(options.mdText), 'markdown');
+    data.theme = 'light';
+    console.log(data)
     this.setData({
-      mdText: options.mdText,
+      mdText: data,
     })
   },
 
