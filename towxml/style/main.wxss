@@ -221,7 +221,6 @@
 }
 
 .h2w__code {
-    padding: 4rpx 8rpx;
     border-width: 1rpx;
     border-style: solid;
     border-radius: 8rpx;
@@ -254,7 +253,7 @@
 /**列表**/
 .h2w__ul,
 .h2w__ol {
-    margin: 30rpx 0rpx 10rpx 0rpx;
+    margin: 30rpx 0rpx 5rpx 0rpx;
     padding-left: 1rem;
 }
 
@@ -316,7 +315,7 @@
 
 /**块元素**/
 .h2w__p {
-    margin: 10rpx 0 10rpx 0;
+    margin: 5rpx 0 5rpx 0;
     padding-left: 1rem;
     /*word-wrap:break-word;
     word-break:break-all;*/
@@ -329,7 +328,6 @@
 
 .h2w__blockquote {
     border-left-width: 8rpx;
-    border-left-style: solid;
 }
 
 /**内连元素**/

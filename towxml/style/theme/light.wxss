@@ -56,7 +56,7 @@
 /**块元素**/
 .h2w-light .h2w__blockquote {
     border-left-color:#dfe2e5;
-    background-color:#e7ebed;
+    background-color:#dbe0e2;
 }
 
 /**内连元素**/
