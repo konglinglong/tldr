@@ -8,12 +8,16 @@
 ## 预览
 
 <div align=center>
-  <img src='https://github.com/konglinglong/tldr/blob/master/images/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%95%8C%E9%9D%A2.png' alt='preview' />
+  <img src='https://github.com/konglinglong/tldr/blob/master/resources/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%95%8C%E9%9D%A2%E6%8B%BC%E6%8E%A5v2_1.jpg' alt='preview' />
+</div>
+<div align=center>
+  <img src='https://github.com/konglinglong/tldr/blob/master/resources/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%95%8C%E9%9D%A2%E6%8B%BC%E6%8E%A5v2_2.jpg' alt='preview' />
 </div>
 
 <div align=center>
-  <img src='https://github.com/konglinglong/tldr/blob/master/images/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg' alt='preview' />
+  <img src='https://github.com/konglinglong/tldr/blob/master/resources/zsm.png' alt='preview' />
 </div>
+
 
 ## 使用
 
